@@ -1,5 +1,3 @@
-#DDL statements to create tables
-
 #DDL to create hostpitals
 DROP TABLE hospitals;
 CREATE EXTERNAL TABLE hospitals (
