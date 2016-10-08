@@ -1,4 +1,3 @@
-/* DDL to create hostpitals
 DROP TABLE hospitals;
 CREATE EXTERNAL TABLE hospitals (
   `provider_id` INT,
@@ -15,7 +14,6 @@ WITH SERDEPROPERTIES (
 STORED AS TEXTFILE
 LOCATION '/home/w205/hospital_compare';
 
-/* DDL to create measures
 DROP TABLE measures;
 CREATE EXTERNAL TABLE measures (
   `measure_id` INT,
@@ -32,7 +30,6 @@ WITH SERDEPROPERTIES (
 STORED AS TEXTFILE
 LOCATION '/home/w205/hospital_compare';
 
-/* DDL to create effective_care
 DROP TABLE effective_care;
 CREATE EXTERNAL TABLE measures (
   `provider_id` INT,
@@ -51,7 +48,6 @@ WITH SERDEPROPERTIES (
 STORED AS TEXTFILE
 LOCATION '/home/w205/hospital_compare';
 
-/* DDL to create readmissions
 DROP TABLE readmissions;
 CREATE EXTERNAL TABLE measures (
   `provider_id` INT,
@@ -72,7 +68,6 @@ WITH SERDEPROPERTIES (
 STORED AS TEXTFILE
 LOCATION '/home/w205/hospital_compare';
 
-/* DDL to create survey
 DROP TABLE survey;
 CREATE EXTERNAL TABLE measures (
   `provider_id` INT,
