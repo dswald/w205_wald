@@ -41,10 +41,6 @@ FROM readmissions;
 CREATE TABLE survey_lite AS SELECT
 provider_id,
 measure_id,
-readmission_score,
-readmission_sample,
-readmission_low,
-readmission_high,
-readmission_start,
-readmission_end
+survey_baseline,
+survey_consistency
 FROM survey;
