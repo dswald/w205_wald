@@ -1,5 +1,3 @@
-#CTAS commands
-
 CREATE TABLE hospitals_lite AS SELECT
 provider_id,
 hospital_name,
