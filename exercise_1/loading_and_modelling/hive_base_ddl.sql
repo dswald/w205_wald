@@ -116,7 +116,7 @@ Communication_with_Doctors_Dimension_score STRING,
 Responsiveness_of_Hospital_Staff__Achievement_pts STRING,
 Responsiveness_of_Hospital_Staff_Improvement_pts STRING,
 Responsiveness_of_Hospital_Staff_Dimension_score STRING,
-Pain_Management_Achievement_pts STRING, _Points
+Pain_Management_Achievement_pts STRING,
 Pain_Management_Improvement_pts STRING,
 Pain_Management_Dimension_score STRING,
 Communication_about_Medicines_Achievement_pts STRING,
