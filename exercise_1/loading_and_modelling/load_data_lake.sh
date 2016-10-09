@@ -25,4 +25,14 @@ tail -n +2 '/home/w205/downloads/Measure Dates.csv' > /home/w205/downloads/hospi
 tail -n +2 /home/w205/downloads/hvbp_hcahps_06_08_2016.csv > /home/w205/downloads/hospital_clean/survey_responses.csv
 
 # put this into HDFS
-hdfs
+hdfs dfs -mkdir /user/w205/hospital_compare/hospitals
+hdfs dfs -mkdir /user/w205/hospital_compare/effective_care
+hdfs dfs -mkdir /user/w205/hospital_compare/readmissions
+hdfs dfs -mkdir /user/w205/hospital_compare/measures
+hdfs dfs -mkdir /user/w205/hospital_compare/survey
+
+hdfs dfs -put /home/w205/downloads/hospital_clean/hospitals.csv /user/w205/hospital_compare/hospital
+hdfs dfs -put /home/w205/downloads/hospital_clean/effective_care.csv /user/w205/hospital_compare/effective_care
+hdfs dfs -put /home/w205/downloads/hospital_clean/readmissions.csv /user/w205/hospital_compare/reasmission
+hdfs dfs -put /home/w205/downloads/hospital_clean/measures.csv /user/w205/hospital_compare/measures
+hdfs dfs -put /home/w205/downloads/hospital_clean/survey_responses.csv /user/w205/hospital_compare/survey

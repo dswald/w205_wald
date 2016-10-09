@@ -1,9 +1,16 @@
 DROP TABLE hospitals;
-CREATE EXTERNAL TABLE hospitals (
+CREATE EXTERNAL TABLE IF NOT EXISTS hospitals (
 provider_id INT,
 hospital_name STRING,
 hospital_address STRING,
-hospital_state STRING
+hospital_city STRING,
+hospital_state STRING,
+hospital_zip INT,
+hospital_county STRING,
+hospital_phone INT,
+hospital_type STRING,
+hospital_own STRING,
+hospital_er STRING
 )
 ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
 WITH SERDEPROPERTIES (
@@ -12,10 +19,12 @@ WITH SERDEPROPERTIES (
 "escapeChar" = '\\'
 )
 STORED AS TEXTFILE
-LOCATION '/home/w205/hospital_compare';
+LOCATION '/user/w205/hospital_compare/hospitals';
+
+
 
 DROP TABLE measures;
-CREATE EXTERNAL TABLE measures (
+CREATE EXTERNAL TABLE IF NOT EXISTS measures (
 measure_id INT,
 measure_name STRING,
 measure_startdate DATE,
@@ -28,10 +37,10 @@ WITH SERDEPROPERTIES (
 "escapeChar" = '\\'
 )
 STORED AS TEXTFILE
-LOCATION '/home/w205/hospital_compare';
+LOCATION '/home/w205/hospital_compare/measures';
 
 DROP TABLE effective_care;
-CREATE EXTERNAL TABLE measures (
+CREATE EXTERNAL TABLE IF NOT EXISTS measures (
 provider_id INT,
 measure_id INT,
 care_score INT,
@@ -46,10 +55,10 @@ WITH SERDEPROPERTIES (
 "escapeChar" = '\\'
 )
 STORED AS TEXTFILE
-LOCATION '/home/w205/hospital_compare';
+LOCATION '/user/w205/hospital_compare';
 
 DROP TABLE readmissions;
-CREATE EXTERNAL TABLE measures (
+CREATE EXTERNAL TABLE IF NOT EXISTS measures (
 provider_id INT,
 measure_id INT,
 readmission_score FLOAT,
@@ -66,10 +75,10 @@ WITH SERDEPROPERTIES (
 "escapeChar" = '\\'
 )
 STORED AS TEXTFILE
-LOCATION '/home/w205/hospital_compare';
+LOCATION '/user/w205/hospital_compare';
 
 DROP TABLE survey;
-CREATE EXTERNAL TABLE measures (
+CREATE EXTERNAL TABLE IF NOT EXISTS measures (
 provider_id INT,
 survey_baseline INT,
 survey_consistency INT,
@@ -81,4 +90,4 @@ WITH SERDEPROPERTIES (
 "escapeChar" = '\\'
 )
 STORED AS TEXTFILE
-LOCATION '/home/w205/hospital_compare';
+LOCATION '/user/w205/hospital_compare';
