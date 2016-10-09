@@ -66,7 +66,7 @@ WITH SERDEPROPERTIES (
 "escapeChar" = '\\'
 )
 STORED AS TEXTFILE
-LOCATION '/user/w205/hospital_compare';
+LOCATION '/user/w205/hospital_compare/effective_care';
 
 DROP TABLE readmissions;
 CREATE EXTERNAL TABLE IF NOT EXISTS measures (
@@ -96,7 +96,7 @@ WITH SERDEPROPERTIES (
 "escapeChar" = '\\'
 )
 STORED AS TEXTFILE
-LOCATION '/user/w205/hospital_compare';
+LOCATION '/user/w205/hospital_compare/readmissions';
 
 DROP TABLE survey;
 CREATE EXTERNAL TABLE IF NOT EXISTS measures (
@@ -141,4 +141,4 @@ WITH SERDEPROPERTIES (
 "escapeChar" = '\\'
 )
 STORED AS TEXTFILE
-LOCATION '/user/w205/hospital_compare';
+LOCATION '/user/w205/hospital_compare/survey';
