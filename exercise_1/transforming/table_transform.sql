@@ -39,7 +39,6 @@ FROM readmissions;
 DROP TABLE survey_lite;
 CREATE TABLE survey_lite AS SELECT
 provider_id,
-measure_id,
 survey_baseline,
 survey_consistency
 FROM survey;
