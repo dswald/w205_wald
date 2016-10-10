@@ -1,20 +1,53 @@
 
 columns: provider_id, measure_id, score_mean
 
-400079  ED_1b   	34.96875
-400003  ED_1b   	33.3125
-400021  ED_1b   	32.5
-400112  ED_1b   	32.40625
-180050  READM_30_HF     31.0
-050315  ED_1b   	27.4375
-100131  READM_30_HF     27.0
-330277  READM_30_HF     27.0
-330202  READM_30_HF     27.0
-330169  READM_30_HF     27.0
+400079  ED_1b   0.9754237288135593
+400003  ED_1b   0.9305084745762712
+400021  ED_1b   0.9084745762711864
+400112  ED_1b   0.9059322033898305
+050315  ED_1b   0.7711864406779662
+050060  ED_1b   0.752542372881356
+400019  ED_1b   0.7288135593220338
+310002  ED_1b   0.7161016949152542
+400120  ED_1b   0.7084745762711865
+330182  ED_1b   0.7059322033898305
 
-The query is to join scores between effective care (scale between 0-100) and readmission score (scale between 0-~32).
-Before joining, I needed to eliminate text data that was non-continuous (what does "medium" mean in this context?) and convert the readmission score to a scale of 0-100.  I assumed that readmissions are bad and that the score indicates an average count of readmissions per instance, so I inverted the numbers and divided by the maximum.
+The above represents the highest ranking procedures by hospital which answers a more interesting question to my mind.
 
-After the scales were identical, I joined using UNION ALL function to create a new table that can perform further analysis without re-processing and then queried this new table "best_hospitals" to obtain the average score grouped by provider and measure to identify the best hospital by service.  To find the aggrigate, one simply needs to remove the measure_id from the GROUP BY statement.
+Methodology:
+The query is to join scores between effective care (scale between 0-1180) and readmission score (scale between 0-~36 max).  I chose to ignore survey results as the question is which is the best hospital, not which is the most liked hospital.
+
++Before joining, I needed to eliminate text data that was non-continuous (what does "medium" mean in this context?) and convert the readmission score to an approximate scale of 0-100.  
++I assumed that readmissions are bad based on "worse than national average" ranging high wheras "better" has a larger distribution. This leads me to believe that the score indicates an average count of readmissions per instance, so I inverted the numbers and divided by the maximum.
+
++I ignored number of instances in this case which gives me heartburn, but I'm out of time.  Given more time, I would have normalized the data by the number of samples / denominator.
+
++After the scales were normalized, I joined using UNION ALL function to create a new table that can perform further analysis without re-processing and then queried this new table "best_hospitals" to obtain the average score grouped by provider and measure to identify the best hospital by service.  
+
++To the question of best aggrigate hospital:
++To find the aggrigate by hospitals, one simply needs to remove the measure_id from the GROUP BY statement.  
++I included this as a second query within best_hospitals.sql to answer the original question with output, below:
+
+
+400003  0.11347525037037351
+430082  0.10084745762711864
+06007F  0.0847457627118644
+233300  0.0847457627118644
+05114F  0.08463983050847457
+33015F  0.08446327683615819
+07003F  0.08432203389830509
+14007F  0.08432203389830509
+39001F  0.08418079096045199
+51004F  0.08411016949152542
+
+
+^ This is a far different answer than I expected!  Only one common hospital, 400003.
+
+Conclusion:
+Based on the data queried from effective care and readmissions, we can see that there is a vast divide between what is called "effective" based on number of re-admissions.  When splitting by measures, it is clear that some measures are cureable (acute) while others require many visits (chronic).  From what I know about medicine, the answers to my query aggree with baseline.  400003 is likely lucky in that it has fewer chronic problems than the rest.  
+
+If I were to spend more time digging in, I would split the dataset in two by measure_id which indicates acute vs. chronic ailmentsni order to determine the best hospitals for both kinds of problems.
+
+
 
 

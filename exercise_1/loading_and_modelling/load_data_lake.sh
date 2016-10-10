@@ -1,11 +1,13 @@
 #setup hive - assumes volume is already mounted to xvdf
 /root/start-hadoop.sh
 mount -t ext4 /dev/xvdf /data
-/data/stop_postgres.sh
 /data/start_postgres.sh
 su - w205
 #confirm hadoop started
 hdfs dfs -ls -R #if no response, exit from su and try again - likely a permission problem
+
+
+
 
 #download the flat files in hive
 wget https://data.medicare.gov/views/bg9k-emty/files/2eed33f4-d8c8-4ed7-8aed-e4ca2885cb0a?content_type=application%2Fzip%3B%20charset%3Dbinary&filename=Hospital_Revised_Flatfiles.zip /home/w205/downloads

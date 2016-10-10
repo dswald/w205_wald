@@ -1,0 +1,11 @@
+
+
+Correlation between scores and survey results:
+-7.836623449649116E-4
+
+Methodology:
+Building on best_hospitals, I ran a correlation between normalized scores and survey results.  Based on my methods, I found that the two are not correlated
+
+Conclusion:
+The answer agrees with my hypothesis that low revisits and high care do not correlate with consumer (patient) satisfaction.  While satisfaction may be a useful metric for business development, it appears to have no bearing on effective medical practice.
+
