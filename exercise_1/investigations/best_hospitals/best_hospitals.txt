@@ -12,6 +12,7 @@ columns: provider_id, measure_id, score_mean
 400120  ED_1b   0.7084745762711865
 330182  ED_1b   0.7059322033898305
 
+
 The above represents the highest ranking procedures by hospital which answers a more interesting question to my mind.
 
 Methodology:
@@ -28,17 +29,17 @@ The query is to join scores between effective care (scale between 0-1180) and re
 +To find the aggrigate by hospitals, one simply needs to remove the measure_id from the GROUP BY statement.  
 +I included this as a second query within best_hospitals.sql to answer the original question with output, below:
 
-
-400003  0.11347525037037351
+400003  0.11736909976594381
 430082  0.10084745762711864
 06007F  0.0847457627118644
 233300  0.0847457627118644
 05114F  0.08463983050847457
 33015F  0.08446327683615819
-07003F  0.08432203389830509
 14007F  0.08432203389830509
+07003F  0.08432203389830509
 39001F  0.08418079096045199
 51004F  0.08411016949152542
+
 
 
 ^ This is a far different answer than I expected!  Only one common hospital, 400003.
