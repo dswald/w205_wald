@@ -1,0 +1,20 @@
+
+columns: provider_id, measure_id, score_mean
+
+400079  ED_1b   	34.96875
+400003  ED_1b   	33.3125
+400021  ED_1b   	32.5
+400112  ED_1b   	32.40625
+180050  READM_30_HF     31.0
+050315  ED_1b   	27.4375
+100131  READM_30_HF     27.0
+330277  READM_30_HF     27.0
+330202  READM_30_HF     27.0
+330169  READM_30_HF     27.0
+
+The query is to join scores between effective care (scale between 0-100) and readmission score (scale between 0-~32).
+Before joining, I needed to eliminate text data that was non-continuous (what does "medium" mean in this context?) and convert the readmission score to a scale of 0-100.  I assumed that readmissions are bad and that the score indicates an average count of readmissions per instance, so I inverted the numbers and divided by the maximum.
+
+After the scales were identical, I joined using UNION ALL function to create a new table that can perform further analysis without re-processing and then queried this new table "best_hospitals" to obtain the average score grouped by provider and measure to identify the best hospital by service.  To find the aggrigate, one simply needs to remove the measure_id from the GROUP BY statement.
+
+

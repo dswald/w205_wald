@@ -19,7 +19,7 @@ DROP TABLE effective_lite;
 CREATE TABLE effective_lite AS SELECT
 provider_id,
 measure_id,
-care_score,
+CAST(care_score AS INT),
 care_start,
 care_end
 FROM effective_care;
@@ -28,7 +28,15 @@ DROP TABLE readmissions_lite;
 CREATE TABLE readmissions_lite AS SELECT
 provider_id,
 measure_id,
-readmission_score,
+CAST(
+   CASE readmission_score
+   WHEN "Not Available" THEN NULL
+   WHEN "Very High (60,000+ patients annually)" THEN NULL
+   WHEN "High (40,000 - 59,999 patients annually)" THEN NULL
+   WHEN "Medium (20,000 - 39,999 patients annually)" THEN NULL
+   WHEN "Low (0 - 19,999 patients annually)" THEN NULL
+   ELSE readmission_score END as INT
+ ) as readmission_score,
 readmission_sample,
 readmission_low,
 readmission_high,
@@ -39,6 +47,6 @@ FROM readmissions;
 DROP TABLE survey_lite;
 CREATE TABLE survey_lite AS SELECT
 provider_id,
-survey_baseline,
+CAST(survey_baseline AS INT),
 survey_consistency
 FROM survey;

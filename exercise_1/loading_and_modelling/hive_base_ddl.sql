@@ -1,5 +1,5 @@
 DROP TABLE hospitals;
-CREATE EXTERNAL TABLE IF NOT EXISTS hospitals (
+CREATE EXTERNAL TABLE hospitals (
 provider_id INT,
 hospital_name STRING,
 hospital_address STRING,
@@ -23,7 +23,7 @@ LOCATION '/user/w205/hospital_compare/hospitals';
 
 
 DROP TABLE measures;
-CREATE EXTERNAL TABLE IF NOT EXISTS measures (
+CREATE EXTERNAL TABLE measures (
 measure_name STRING,
 measure_id STRING,
 measure_startquart STRING,
@@ -41,7 +41,7 @@ STORED AS TEXTFILE
 LOCATION '/user/w205/hospital_compare/measures';
 
 DROP TABLE effective_care;
-CREATE EXTERNAL TABLE IF NOT EXISTS effective_care (
+CREATE EXTERNAL TABLE effective_care (
 provider_id INT,
 hospital_name STRING,
 hospital_address STRING,
@@ -53,7 +53,7 @@ hospital_phone INT,
 condition STRING,
 measure_id STRING,
 measure_name STRING,
-care_score STRING,
+care_score int,
 care_sample STRING,
 care_footnote STRING,
 care_start STRING,
@@ -69,7 +69,7 @@ STORED AS TEXTFILE
 LOCATION '/user/w205/hospital_compare/effective_care';
 
 DROP TABLE readmissions;
-CREATE EXTERNAL TABLE IF NOT EXISTS readmissions (
+CREATE EXTERNAL TABLE readmissions (
 provider_id INT,
 hospital_name STRING,
 hospital_address STRING,
@@ -99,7 +99,7 @@ STORED AS TEXTFILE
 LOCATION '/user/w205/hospital_compare/readmissions';
 
 DROP TABLE survey;
-CREATE EXTERNAL TABLE IF NOT EXISTS survey (
+CREATE EXTERNAL TABLE survey (
 provider_id INT,
 hospital_name STRING,
 hospital_address STRING,
