@@ -1,0 +1,18 @@
+
+050060  1.6681673490394981
+400021  1.6584745762711863
+330182  1.6340572272316884
+400019  1.5944385831638916
+310002  1.5879766829943254
+400120  1.5647245643502576
+400079  1.5566737407344884
+290046  1.5465572033898305
+050492  1.514512688022549
+400016  1.513718232259912
+
+
+Methodology:
+I chose to list variability = max-min and set up a query to group by provider ID to find the hospitals where variation is the greatest
+
+Conclusion:
+It appears the largest variation is 166% which indicates a wild swing in effective care score vs. readmissions score.  I question both my model as well as the reporting of these hospitals under effective care score as readmission is likely the driving factor which indicates chronic illness with failure to adequately score effective care.
