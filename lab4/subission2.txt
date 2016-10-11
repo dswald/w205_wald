@@ -1,0 +1,7 @@
+>>> results_ebay = sqlContext.sql('SELECT count(*) FROM Web_Session_Log WHERE REFERERURL= "http://www.ebay.com"')
+>>> results_ebay.show()
++----+
+| _c0|
++----+
+|3943|
++----+
