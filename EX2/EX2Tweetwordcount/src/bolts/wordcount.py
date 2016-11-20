@@ -37,7 +37,6 @@ class WordCounter(Bolt):
         #Select
         cur.execute("SELECT word, count from Tweetwordcount")
         records = cur.fetchall()
-        num_word = 0;
         if rec in records:
            num_word = rec[1] + 1;
            #update the count
