@@ -5,22 +5,22 @@ import tweepy, copy
 import Queue, threading
 
 from streamparse.spout import Spout
-from Twittercredentials import *
+# from Twittercredentials import *
 
 ################################################################################
 # Twitter credentials
 ################################################################################
-# twitter_credentials = {
-#     "consumer_key"        :  "<enter your consumer key>",
-#     "consumer_secret"     :  "<enter your consumer secret key>",
-#     "access_token"        :  "<enter your access token>",
-#     "access_token_secret" :  "<enter your access token secret key>",
-# }
+twitter_credentials = {
+    "consumer_key"        :  "zrt5b5UXCx4l9IufAlcHjjlH2",
+    "consumer_secret"     :  "EeOjkhwZC0W0YliWpnLovzXegYjws0I4VjKwk69gfjFHGVgIYZ",
+    "access_token"        :  "2369802380-GaB9MKLW7VyJJjuoANTjAeKaPbDaOjGMgY25XkE",
+    "access_token_secret" :  "PiUEGkBaTqrn28UaYnTym0EVdCGR3nTVZNPlGTYTDTRCj",
+}
 
-# def auth_get(auth_key):
-#     if auth_key in twitter_credentials:
-#         return twitter_credentials[auth_key]
-#     return None
+def auth_get(auth_key):
+    if auth_key in twitter_credentials:
+        return twitter_credentials[auth_key]
+    return None
 
 ################################################################################
 # Class to listen and act on the incoming tweets
@@ -46,15 +46,15 @@ class Tweets(Spout):
     def initialize(self, stormconf, context):
         self._queue = Queue.Queue(maxsize = 100)
 
-        # consumer_key = auth_get("consumer_key")
-        # consumer_secret = auth_get("consumer_secret")
-        auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+        consumer_key = auth_get("consumer_key")
+        consumer_secret = auth_get("consumer_secret")
+        # auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 
-        # if auth_get("access_token") and auth_get("access_token_secret"):
-        #     access_token = auth_get("access_token")
-        #     access_token_secret = auth_get("access_token_secret")
-        #     auth.set_access_token(access_token, access_token_secret)
-        auth.set_access_token(access_token, access_token_secret)
+        if auth_get("access_token") and auth_get("access_token_secret"):
+            access_token = auth_get("access_token")
+            access_token_secret = auth_get("access_token_secret")
+            auth.set_access_token(access_token, access_token_secret)
+        # auth.set_access_token(access_token, access_token_secret)
 
         self._tweepy_api = tweepy.API(auth)
 
