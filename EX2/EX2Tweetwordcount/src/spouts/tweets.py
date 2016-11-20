@@ -18,8 +18,8 @@ twitter_credentials = {
     "access_token_secret" :  "PiUEGkBaTqrn28UaYnTym0EVdCGR3nTVZNPlGTYTDTRCj",
 }
 
-auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-auth.set_access_token(access_token, access_token_secret)
+auth = tweepy.OAuthHandler(twitter_credentials["consumer_key"], twitter_credentials["consumer_secret"])
+auth.set_access_token(twitter_credentials["access_token"], twitter_credentials["access_token_secret"])
 
 def auth_get(auth_key):
     if auth_key in twitter_credentials:
