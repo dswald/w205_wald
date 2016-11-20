@@ -2,7 +2,6 @@ from __future__ import absolute_import, print_function, unicode_literals
 
 from collections import Counter
 from streamparse.bolt import Bolt
-#from Twittercredentials import *
 import psycopg2
 
 class WordCounter(Bolt):

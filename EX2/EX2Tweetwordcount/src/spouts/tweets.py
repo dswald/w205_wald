@@ -5,6 +5,7 @@ import tweepy, copy
 import Queue, threading
 
 from streamparse.spout import Spout
+from tweepy import OAuthHandler
 # from Twittercredentials import *
 
 ################################################################################
@@ -16,6 +17,9 @@ twitter_credentials = {
     "access_token"        :  "2369802380-GaB9MKLW7VyJJjuoANTjAeKaPbDaOjGMgY25XkE",
     "access_token_secret" :  "PiUEGkBaTqrn28UaYnTym0EVdCGR3nTVZNPlGTYTDTRCj",
 }
+
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token, access_token_secret)
 
 def auth_get(auth_key):
     if auth_key in twitter_credentials:
