@@ -15,15 +15,12 @@ class WordCounter(Bolt):
         #The first step is to create a cursor.
 
 
-        #
-        $querycheck="Tweetwordcount;
-        $query_result=$dbConnection->query($querycheck);
+        #Drop table and create new instance for every execution.
+        #I made a design decision to support streaming analytics and not a running total.
         cur = conn.cursor()
-
-        if ($query_result !== FALSE):
-            drop table "Tweetwordcount"
-
-        cur.execute('''CREATE TABLE IF NOT EXISTS Tweetwordcount
+        cur.execute('''DROP TABLE IF EXISTS Tweetwordcount''')`
+        conn.commit()`
+        cur.execute('''CREATE TABLE Tweetwordcount
                (word TEXT PRIMARY KEY     NOT NULL,
                count INT     NOT NULL);''')
         conn.commit()
