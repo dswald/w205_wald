@@ -56,6 +56,7 @@ class WordCounter(Bolt):
             # conn.commit()
         else:
             cur.execute("UPDATE Tweetwordcount SET count=%s WHERE word=%s", (word,count)
+            # conn.commit()
         conn.commit()
         # Log the count - just to see the topology running
         self.log('%s: %d' % (word, self.counts[word]))
