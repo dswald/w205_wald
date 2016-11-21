@@ -7,7 +7,9 @@ import psycopg2
 
 conn = psycopg2.connect(database="tcount", user="postgres", password="pass", host="localhost", port="5432")
 
-# num_args = len(sys.argv)
+num_args = len(sys.argv)
+print("num arguments", num_args)
+print("args", sys.argv)
 
 cur = conn.cursor()
 cur.execute("SELECT word, count from Tweetwordcount")
