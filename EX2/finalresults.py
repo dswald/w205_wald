@@ -19,14 +19,16 @@ cur.execute("SELECT word, count from Tweetwordcount")
 records = cur.fetchall()
 
 if num_args > 1:
-    for arg in intersect(sys.argv, records):
-        print ("word = ", arg[0])
-        print ("count = ", arg[1], "\n")
-elif num_args == 1:
     for rec in records:
-        mylist.append((rec[0], rec[1]))
-    mylist.sort()
-    print(mylist)
+        if rec[0] in sys.argv:
+            print("Total number of occurences of "%s": %s", (rec[0], rec[1]))
+
+elif num_args == 1:
+    records.sort()
+    print(records)
+
+else:
+    print("invalid entry: type word or words to find twitter analytics")
 
 conn.commit()
 conn.close()
