@@ -24,7 +24,7 @@ if num_args > 1:
         print ("count = ", arg[1], "\n")
 elif num_args == 1:
     for rec in records:
-        mylist = mylist.append(rec)
+        mylist.append((rec[0], rec[1]))
     mylist = mylist.sort()
     print(mylist)
 
