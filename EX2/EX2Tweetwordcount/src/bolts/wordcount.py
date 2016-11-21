@@ -18,7 +18,7 @@ class WordCounter(Bolt):
         #Drop table and create new instance for every execution.
         #I made a design decision to support streaming analytics and not a running total.
         cur = conn.cursor()
-        cur.execute('''DROP TABLE IF EXISTS Tweetwordcount''')
+        cur.execute('''DROP TABLE Tweetwordcount''')
         conn.commit()
         cur.execute('''CREATE TABLE Tweetwordcount
                (word TEXT PRIMARY KEY     NOT NULL,
@@ -53,7 +53,7 @@ class WordCounter(Bolt):
         cur.execute("INSERT INTO Tweetwordcount (word,self.counts[word]) \
                     VALUES (word, 1)");
         conn.commit()
-        
+
         # Log the count - just to see the topology running
         self.log('%s: %d' % (word, self.counts[word]))
         conn.close()
