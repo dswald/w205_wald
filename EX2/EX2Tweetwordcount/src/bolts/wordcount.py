@@ -44,7 +44,7 @@ class WordCounter(Bolt):
                         VALUES (%s, %s)", (word, self.counts[word]));
             # conn.commit()
         elif self.counts[word] > 1:
-            cur.execute("UPDATE tweetwordcount SET count=%s WHERE word=%s", (self.counts[word], word)
+            cur.execute("UPDATE tweetwordcount SET count=%s WHERE word=%s", (self.counts[word], word))
             # conn.commit()
         else:
             print "if statement failure"
