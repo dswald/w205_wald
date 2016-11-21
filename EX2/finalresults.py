@@ -3,20 +3,22 @@ from __future__ import absolute_import, print_function, unicode_literals
 import sys
 # from collections import Counter
 # from streamparse.bolt import Bolt
-# import psycopg2
+import psycopg2
 
 conn = psycopg2.connect(database="tcount", user="postgres", password="pass", host="localhost", port="5432")
 
-num_args = len(sys.argv)
+# num_args = len(sys.argv)
 
 cur = conn.cursor()
 cur.execute("SELECT word, count from Tweetwordcount")
 records = cur.fetchall()
 
-for rec in records:
-   print "word = ", rec[0]
-   print "count = ", rec[1], "\n"
+for arg in records:
+    if rec in sys.argv:
+        print "word = ", rec[0]
+        print "count = ", rec[1], "\n"
 conn.commit()
+conn.close()
 
 # for arg in sys.argv:
 #     print ("word = ", arg)
@@ -25,7 +27,6 @@ conn.commit()
 #        print "count = ", arg[1], "\n"
 #     conn.commit()
 
-conn.close()
 #
 #
 # class WordCounter(Bolt):
