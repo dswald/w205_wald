@@ -12,19 +12,7 @@ class WordCounter(Bolt):
         conn = psycopg2.connect(database="tcount", user="postgres", password="pass", host="localhost", port="5432")
 
         #Create a Table
-        #The first step is to create a cursor.
-
-        #Drop table and create new instance for every execution.
-        #I made a design decision to support streaming analytics and not a running total.
-        # cur = conn.cursor()
-        # cur.execute('''DROP TABLE Tweetwordcount;''')
-        # conn.commit()
-        # cur.execute('''CREATE TABLE Tweetwordcount
-        #        (word TEXT     NOT NULL,
-        #        count INT     NOT NULL);''')
-        # conn.commit()
-        # conn.close()
-
+        #couldn't get this to work inside here, so setting one up externally
 
     def process(self, tup):
         import psycopg2
@@ -41,12 +29,13 @@ class WordCounter(Bolt):
 
         if self.counts[word] == 1:
             cur.execute("INSERT INTO tweetwordcount (word,count) \
-                        VALUES (%s, %s)", (word, self.counts[word]));
-            # conn.commit()
+                        VALUES (%s, %d)", (word, self.counts[word]));
+
         elif self.counts[word] > 1:
-            cur.execute("UPDATE tweetwordcount SET count=%s WHERE word=%s", (self.counts[word], word))
-            # conn.commit()
+            cur.execute("UPDATE tweetwordcount SET count=%d WHERE word=%s", (self.counts[word], word))
+
         else:
             print("if statement failure")
+
         conn.commit()
         conn.close()
