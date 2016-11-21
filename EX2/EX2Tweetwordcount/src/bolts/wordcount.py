@@ -50,10 +50,14 @@ class WordCounter(Bolt):
         # else:
         self.counts[word] += 1
         self.emit([word, self.counts[word]])
-        cur.execute("INSERT INTO tweetwordcount (word,count) \
-                    VALUES (word, 1)");
-        conn.commit()
-
+        if self.counts[word] == 1:
+            cur.execute("INSERT INTO tweetwordcount (word,count) \
+                        VALUES (%s, %s)" (word, self.counts[word]));
+            conn.commit()
+        else:
+            cur.execute("UPDATE  INTO Tweetwordcount (word,count) \
+                  VALUES (%s, 1)",(word, self.counts[word]));
+            conn.commit()
         # Log the count - just to see the topology running
         self.log('%s: %d' % (word, self.counts[word]))
         conn.close()
