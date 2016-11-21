@@ -25,7 +25,7 @@ if num_args > 1:
 elif num_args == 1:
     for rec in records:
         mylist.append((rec[0], rec[1]))
-    mylist = mylist.sort()
+    mylist.sort()
     print(mylist)
 
 conn.commit()
