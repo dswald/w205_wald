@@ -18,8 +18,8 @@ class WordCounter(Bolt):
         #Drop table and create new instance for every execution.
         #I made a design decision to support streaming analytics and not a running total.
         cur = conn.cursor()
-        cur.execute('''DROP TABLE Tweetwordcount''')`
-        conn.commit()`
+        cur.execute('''DROP TABLE IF EXISTS Tweetwordcount''')
+        conn.commit()
         cur.execute('''CREATE TABLE Tweetwordcount
                (word TEXT PRIMARY KEY     NOT NULL,
                count INT     NOT NULL);''')
@@ -30,7 +30,7 @@ class WordCounter(Bolt):
     def process(self, tup):
         word = tup.values[0]
 
-
+        conn = psycopg2.connect(database="tcount", user="postgres", password="pass", host="localhost", port="5432")
         cur = conn.cursor()
 
         # Write codes to increment the word count in Postgres
