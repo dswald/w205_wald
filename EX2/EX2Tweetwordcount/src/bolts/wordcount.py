@@ -41,20 +41,19 @@ class WordCounter(Bolt):
 
         #Select
         cur.execute("SELECT word, count from Tweetwordcount")
-        records = cur.fetchall()
-        if rec in records:
-           num_word = rec[1] + 1;
-           #update the count
-           cur.execute("UPDATE Tweetwordcount SET count=%s WHERE word=%s", (word, num_word))
-           conn.commit()
-        else:
-           self.counts[word] += 1
-           # self.emit([word, self.counts[word]])
-           cur.execute("INSERT INTO Tweetwordcount (word,self.counts[word]) \
-                 VALUES (word, 1)");
-           conn.commit()
+        # records = cur.fetchall()
+        # if rec in records:
+        #    num_word = rec[1] + 1;
+        #    #update the count
+        #    cur.execute("UPDATE Tweetwordcount SET count=%s WHERE word=%s", (word, num_word))
+        #    conn.commit()
+        # else:
+        self.counts[word] += 1
+        # self.emit([word, self.counts[word]])
+        cur.execute("INSERT INTO Tweetwordcount (word,self.counts[word]) \
+                    VALUES (word, 1)");
         conn.commit()
-
+        
         # Log the count - just to see the topology running
         self.log('%s: %d' % (word, self.counts[word]))
         conn.close()
