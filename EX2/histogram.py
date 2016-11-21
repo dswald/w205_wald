@@ -9,7 +9,9 @@ conn = psycopg2.connect(database="tcount", user="postgres", password="pass", hos
 cur = conn.cursor()
 cur.execute("SELECT word, count from Tweetwordcount")
 records = cur.fetchall()
-records.sort()
+
+records = sorted(records, key=lambda word: word[1])  # sort by count
+# records.sort()
 
 if num_args == 1:
     for rec in records:
