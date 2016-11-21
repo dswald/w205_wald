@@ -40,7 +40,7 @@ class WordCounter(Bolt):
         # you need to create both the database and the table in advance.
 
         #Select
-        cur.execute("SELECT word, count from Tweetwordcount")
+        cur.execute("SELECT word, count from tweetwordcount")
         # records = cur.fetchall()
         # if rec in records:
         #    num_word = rec[1] + 1;
@@ -49,8 +49,9 @@ class WordCounter(Bolt):
         #    conn.commit()
         # else:
         self.counts[word] += 1
+        count += 1
         # self.emit([word, self.counts[word]])
-        cur.execute("INSERT INTO Tweetwordcount (word,self.counts[word]) \
+        cur.execute("INSERT INTO tweetwordcount (word,count) \
                     VALUES (word, 1)");
         conn.commit()
 
