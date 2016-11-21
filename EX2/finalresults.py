@@ -1,19 +1,11 @@
 from __future__ import absolute_import, print_function, unicode_literals
 
 import sys
-# from collections import Counter
-# from streamparse.bolt import Bolt
 import psycopg2
 
-conn = psycopg2.connect(database="tcount", user="postgres", password="pass", host="localhost", port="5432")
-
 num_args = len(sys.argv)
-print("num arguments", num_args)
-print("args", sys.argv)
 
-for arg in sys.argv:
-    print(arg)
-
+conn = psycopg2.connect(database="tcount", user="postgres", password="pass", host="localhost", port="5432")
 cur = conn.cursor()
 cur.execute("SELECT word, count from Tweetwordcount")
 records = cur.fetchall()
@@ -21,7 +13,7 @@ records = cur.fetchall()
 if num_args > 1:
     for rec in records:
         if rec[0] in sys.argv:
-            print("Total number of occurences of "%s": %s", (rec[0], rec[1]))
+            print("Total number of occurences of \""+rec[0]+"\":", rec[1])
 
 elif num_args == 1:
     records.sort()
@@ -32,41 +24,3 @@ else:
 
 conn.commit()
 conn.close()
-
-# for arg in sys.argv:
-#     print ("word = ", arg)
-#     for arg in records:
-#        print "word = ", arg[0]
-#        print "count = ", arg[1], "\n"
-#     conn.commit()
-
-#
-#
-# class WordCounter(Bolt):
-#
-#     def initialize(self, conf, ctx):
-#         self.counts = Counter()
-#
-#         conn = psycopg2.connect(database="tcount", user="postgres", password="pass", host="localhost", port="5432")
-#
-#
-#
-# #pull results from postgress
-# import psycopg2
-#
-# conn = psycopg2.connect(database="tcount", user="postgres", password="pass", host="localhost", port="5432")
-#
-# #Create a Table
-# #The first step is to create a cursor.
-#
-# cur = conn.cursor()
-#
-# #Select
-# cur.execute("SELECT word, count from Tweetwordcount")
-# records = cur.fetchall()
-# for rec in records:
-#    print "word = ", rec[0]
-#    print "count = ", rec[1], "\n"
-# conn.commit()
-#
-# conn.close()
