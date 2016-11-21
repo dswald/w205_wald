@@ -15,8 +15,8 @@ records = cur.fetchall()
 
 for arg in records:
     if rec in sys.argv:
-        print "word = ", rec[0]
-        print "count = ", rec[1], "\n"
+        print ("word = ", rec[0])
+        print ("count = ", rec[1], "\n")
 conn.commit()
 conn.close()
 
