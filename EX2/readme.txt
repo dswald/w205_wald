@@ -28,4 +28,4 @@ i.	finalresults.py
 ii.	histogram.py
 iii.	barchart.py 
 1.	# note that plotting within python 2 is disabled, so i copied this code over to a jupyter notebook running python 3, populating the data with most_used = records[-1:-21:-1]
-	
+10)	screenshots are located within ./w205/ex2/ex2tweetwordcount/
