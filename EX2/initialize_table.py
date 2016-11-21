@@ -7,7 +7,7 @@ cur = conn.cursor()
 cur.execute('''DROP TABLE tweetwordcount;''')
 conn.commit()
 cur.execute('''CREATE TABLE Tweetwordcount
-       (word TEXT     NOT NULL,
+       (word TEXT     NOT NULL PRIMARY KEY,
        count INT     NOT NULL);''')
 conn.commit()
 conn.close()
