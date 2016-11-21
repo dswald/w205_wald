@@ -49,8 +49,7 @@ class WordCounter(Bolt):
         #    conn.commit()
         # else:
         self.counts[word] += 1
-        #count += 1
-        # self.emit([word, self.counts[word]])
+        self.emit([word, self.counts[word]])
         cur.execute("INSERT INTO tweetwordcount (word,count) \
                     VALUES (word, 1)");
         conn.commit()
