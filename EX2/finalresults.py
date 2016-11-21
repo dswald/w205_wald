@@ -11,14 +11,23 @@ num_args = len(sys.argv)
 print("num arguments", num_args)
 print("args", sys.argv)
 
+for arg in sys.argv:
+    print(arg)
+
 cur = conn.cursor()
 cur.execute("SELECT word, count from Tweetwordcount")
 records = cur.fetchall()
 
-for arg in sys.argv:
-    for arg in records:
+if num_args > 1:
+    for arg in intersect(sys.argv, records):
         print ("word = ", arg[0])
         print ("count = ", arg[1], "\n")
+elif num_args == 1:
+    for rec in records:
+        mylist = mylist.append(rec)
+    mylist = mylist.sort()
+    print(mylist)
+
 conn.commit()
 conn.close()
 
