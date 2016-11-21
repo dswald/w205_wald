@@ -47,6 +47,6 @@ class WordCounter(Bolt):
             cur.execute("UPDATE tweetwordcount SET count=%s WHERE word=%s", (self.counts[word], word))
             # conn.commit()
         else:
-            print "if statement failure"
+            print("if statement failure")
         conn.commit()
         conn.close()
