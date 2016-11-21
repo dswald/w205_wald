@@ -14,7 +14,6 @@ class WordCounter(Bolt):
         #Create a Table
         #The first step is to create a cursor.
 
-
         #Drop table and create new instance for every execution.
         #I made a design decision to support streaming analytics and not a running total.
         # cur = conn.cursor()
@@ -34,18 +33,20 @@ class WordCounter(Bolt):
 
         conn = psycopg2.connect(database="tcount", user="postgres", password="pass", host="localhost", port="5432")
         cur = conn.cursor()
+
         self.counts[word] += 1
         self.emit([word, self.counts[word]])
         # Log the count - just to see the topology running
         self.log('%s: %d' % (word, self.counts[word]))
 
-        cur.execute("SELECT word, count from tweetwordcount")
         if self.counts[word] == 1:
             cur.execute("INSERT INTO tweetwordcount (word,count) \
                         VALUES (%s, %s)", (word, self.counts[word]));
             # conn.commit()
-        else:
+        elif self.counts[word] > 1:
             cur.execute("UPDATE tweetwordcount SET count=%s WHERE word=%s", (word,count)
             # conn.commit()
+        else:
+            print("if statement failure")
         conn.commit()
         conn.close()
