@@ -14,12 +14,21 @@ class WordCounter(Bolt):
         #Create a Table
         #The first step is to create a cursor.
 
+
+        #
+        $querycheck="Tweetwordcount;
+        $query_result=$dbConnection->query($querycheck);
         cur = conn.cursor()
+
+        if ($query_result !== FALSE):
+            drop table "Tweetwordcount"
+
         cur.execute('''CREATE TABLE IF NOT EXISTS Tweetwordcount
                (word TEXT PRIMARY KEY     NOT NULL,
                count INT     NOT NULL);''')
         conn.commit()
         conn.close()
+
 
     def process(self, tup):
         word = tup.values[0]
