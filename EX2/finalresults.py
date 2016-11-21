@@ -15,8 +15,8 @@ cur = conn.cursor()
 cur.execute("SELECT word, count from Tweetwordcount")
 records = cur.fetchall()
 
-for arg in records:
-    if arg in sys.argv:
+for arg in sys.argv:
+    for arg in records:
         print ("word = ", arg[0])
         print ("count = ", arg[1], "\n")
 conn.commit()
