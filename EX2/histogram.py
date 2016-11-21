@@ -10,7 +10,7 @@ cur = conn.cursor()
 cur.execute("SELECT word, count from Tweetwordcount")
 records = cur.fetchall()
 
-records = sorted(records, key=lambda word: word[1])  # sort by count
+records = sorted(records, key=lambda word: int(word[1]))  # sort by count
 # records.sort()
 
 if num_args == 1:
@@ -19,12 +19,12 @@ if num_args == 1:
 
 if num_args ==2:
     for rec in records:
-        if rec[1] >= sys.argv[1]:
+        if int(rec[1]) >= int(sys.argv[1]):
             print(rec[0] + ":", rec[1])
 
 else:
     for rec in records:
-        if rec[1] >= sys.argv[1] and rec[1] <= sys.argv[2]:
+        if int(rec[1]) >= int(sys.argv[1]) and int(rec[1]) <= int(sys.argv[2]):
             print(rec[0] + ":", rec[1])
 
 
